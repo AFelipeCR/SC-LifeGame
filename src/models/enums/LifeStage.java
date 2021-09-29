@@ -1,10 +1,10 @@
 package models.enums;
 
 public enum LifeStage {
-	CHILDHOOD(0, 30, 2f, .2f), 
-	ADOLESCENCE(31, 50, 5f, .25f), 
-	ADULTHOOD(51, 70, 6f, .4f), 
-	OLD_AGE(71, 90, 4f, .15f), 
+	CHILDHOOD(0, 30, 4f, .2f), 
+	ADOLESCENCE(31, 50, 10f, .25f), 
+	ADULTHOOD(51, 70, 12f, .4f), 
+	OLD_AGE(71, 90, 8f, .15f), 
 	DEATH;
 	
 	private int initAge;

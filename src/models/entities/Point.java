@@ -1,8 +1,8 @@
 package models.entities;
 
 public class Point {
-	public int x;
-	public int y;
+	public float x;
+	public float y;
 	
 	public Point(int x, int y) {
 		this.x = x;
@@ -10,6 +10,14 @@ public class Point {
 	}
 	
 	public String toText(){
-		return "(%s, %s)".formatted(this.x, this.y);
+		return "(%s, %s)".formatted((int) this.x, (int) this.y);
+	}
+	
+	public int getX() {
+		return (int) x;
+	}
+	
+	public int getY() {
+		return (int) y;
 	}
 }

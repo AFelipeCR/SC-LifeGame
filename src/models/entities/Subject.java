@@ -21,8 +21,8 @@ public class Subject {
 		this.stage = stage;
 		this.angle = angle;
 		this.position = position;
-		this.virusTime = 0;
-		this.incubationTime = 0;
+		this.virusTime = -1;
+		this.incubationTime = -1;
 		this.isGivingBirth = false;
 	}
 	
@@ -37,7 +37,7 @@ public class Subject {
 		this.isGivingBirth = clone.isGivingBirth;
 	}
 	
-	public void step() {
+	public void step(double timeUnit) {
 		Random r = new Random();
 		this.age++;
 		
@@ -59,8 +59,8 @@ public class Subject {
 				this.isGivingBirth = true;
 		}
 		
-		this.position.x += Math.cos(Math.toRadians(this.angle)) * this.stage.getSpeed();
-		this.position.y += Math.sin(Math.toRadians(this.angle)) * this.stage.getSpeed();
+		this.position.x += Math.cos(Math.toRadians(this.angle)) * this.stage.getSpeed() * timeUnit;
+		this.position.y += Math.sin(Math.toRadians(this.angle)) * this.stage.getSpeed() * timeUnit;
 		
 		if(this.position.x > Parameters.MAP_WIDTH) {
 			this.position.x = Parameters.MAP_WIDTH * 2  - this.position.x;
@@ -82,6 +82,10 @@ public class Subject {
 			this.angle =  r.nextInt(180);
 		}
 		
+	}
+	
+	public void step() {
+		this.step(1);
 	}
 	
 	public int getAge() {

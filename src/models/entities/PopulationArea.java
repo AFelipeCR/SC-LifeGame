@@ -59,8 +59,10 @@ public class PopulationArea implements Runnable, Parameters {
 			System.out.println("%s, %s".formatted(time++, this.population.size()));
 
 			for (Subject s : this.population) {
-				if (s.isGivingBirth())
+				if (s.isGivingBirth()) {
 					bornedSubjects.add(this.generateChildSubject());
+					s.setGivingBirth(false);
+				}
 
 				if (positions.containsKey(s.getPosition().toText())) {
 					List<Subject> l = positions.get(s.getPosition().toText());
@@ -108,7 +110,7 @@ public class PopulationArea implements Runnable, Parameters {
 					positions.put(s.getPosition().toText(), l);
 				}
 
-				s.step();
+				s.step(1 / (double) TIMES_PER_UNIT);
 
 				if (s.getStage().equals(LifeStage.DEATH)) {
 					deadSubjects.add(s);
@@ -128,11 +130,9 @@ public class PopulationArea implements Runnable, Parameters {
 				this.subjectsCallback.f(this.population);
 
 			try {
-				Thread.sleep(TIME_UNIT);
+				Thread.sleep(TIME_UNIT / TIMES_PER_UNIT);
 			} catch (InterruptedException e) {
 			}
 		}
-		
-		System.out.println("Fin");
 	}
 }
